@@ -32,7 +32,7 @@ namespace MyFirstCSharp
         {
             try
             {
-                // Start an asynchronous socket to listen for connections
+                // Start a synchronous socket to listen for connections
                 while (listening)
                 {
                     Socket clientSocket = server.Accept();
@@ -42,6 +42,8 @@ namespace MyFirstCSharp
                     } else {
                         // Start client to respond to messages
                         Console.WriteLine("Socket accepted");
+
+                        // Choose which type of server to start.
                         //Client client = new Client(clientSocket, ClientResponders.EchoResponder);
                         //Client client = new Client(clientSocket, ClientResponders.FizzBuzzResponder);
                         Client client = new Client(clientSocket, ClientResponders.SimpleWebServer);
@@ -70,6 +72,7 @@ namespace MyFirstCSharp
                 Console.WriteLine(e.Message);
             }
 
+            // Start a thread to listen for new connections
             accepter = new Thread(AcceptConnections);
             accepter.IsBackground = true;
             accepter.Start();

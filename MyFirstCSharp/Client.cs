@@ -54,6 +54,7 @@ namespace MyFirstCSharp
                 if (reading)
                 {
                     // Only close if we haven't already closed
+                    // For example, we might close in the responder.
                     Close();
                 }
             }
